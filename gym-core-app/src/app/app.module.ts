@@ -5,7 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginModule } from './login/login.module';
-import { RegistrationModule } from './registration/registration.module';
+import { RegisterModule } from './register/register.module';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,10 @@ import { RegistrationModule } from './registration/registration.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     LoginModule,
-    RegistrationModule
+    RegisterModule,
+    FormsModule,
+    HttpClientModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
