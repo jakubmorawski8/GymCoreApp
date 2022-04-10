@@ -4,7 +4,7 @@ import { Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { RegisterCredentials } from '../../models/register-credentials';
 
-const registerURL: string = environment.url + "signup";
+const registerURL: string = environment.url + "Accounts/register";
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
