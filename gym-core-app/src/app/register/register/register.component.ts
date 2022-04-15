@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { RegisterCredentials } from 'src/app/models/register-credentials';
@@ -102,10 +103,19 @@ export class RegisterComponent {
 
     this.registerService.register(registerCredentials).subscribe({
       next: (v) => console.log(v),
-      error: (e) => console.error(e),
+      error: (e) => {
+        this.registerService.handleError(e)
+        var response = e as HttpErrorResponse;
+        var firsterror = response.error[Object.keys(response.error)[0]]
+        alert(firsterror)
+      },
       complete: () => console.info('complete')
     }
     );
-    alert('test');
+    // alert('test');
+
+    
   }
+
+  
 }
