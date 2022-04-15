@@ -9,7 +9,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
-
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,9 @@ import { RegisterComponent } from './register/register.component';
     MatSelectModule,
     MatRadioModule,
     MatCardModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatToolbarModule,
+    MatFormFieldModule
   ]
 })
 export class RegisterModule { }

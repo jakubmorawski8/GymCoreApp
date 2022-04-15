@@ -1,54 +1,26 @@
-<form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
-  <mat-card class="shipping-card">
-    <mat-card-header>
-      <mat-card-title>Shipping Information</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <div class="row">
-        <div class="col">
-          <mat-form-field class="full-width">
-            <input matInput placeholder="Email" formControlName="email">
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <mat-form-field class="full-width">
-            <input type ="password" matInput placeholder="Password" formControlName="password">
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <mat-form-field class="full-width">
-            <input type ="password" matInput placeholder="Confirm password" formControlName="confirmPassword">
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <mat-form-field class="full-width">
-            <input matInput placeholder="First name" formControlName="firstName">
-            <mat-error *ngIf="addressForm.controls['firstName'].hasError('required')">
-              First name is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div class="col">
-          <mat-form-field class="full-width">
-            <input matInput placeholder="Last name" formControlName="lastName">
-            <mat-error *ngIf="addressForm.controls['lastName'].hasError('required')">
-              Last name is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
-      </div>
-   
-     
-     
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button color="primary" type="submit">Submit</button>
-    </mat-card-actions>
-  </mat-card>
-</form>
+<div class="login-container">
+  <div class="login-content">
+    <mat-toolbar class="login-toolbar"
+    color="primary">REGISTER</mat-toolbar>
+    <mat-card>
+    <form [formGroup]="registerForm" novalidate (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <input matInput autofocus type="email" matInput placeholder="Email *" formControlName="email">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput autofocuts type="text" maxInput placeholder="Username *" formControlName="username">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="password" autocomplete="false" matInput placeholder="Password *" formControlName="password">
+      <mat-hint>Choose a password of at least eight characters, one uppercase letter and one number</mat-hint>
+    </mat-form-field>
+
+    <hr>
+    <div class="socialMediaFlex">
+        <button style="width:50%" [disabled]="registerForm.invalid"    type="submit" mat-raised-button color="primary">Submit</button>
+    </div>
+    
+    </form>
+    </mat-card>
+  </div>
+</div>
