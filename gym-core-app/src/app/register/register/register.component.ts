@@ -20,7 +20,7 @@ export class RegisterComponent {
     lastname:[null,Validators.required],
     password: ['', [
       Validators.required, 
-      Validators.pattern(/([^a-zA-Z\d])+([a-zA-Z\d])+|([a-zA-Z\d])+([^a-zA-Z\d])+/)
+      // Validators.pattern(/([^a-zA-Z\d])+([a-zA-Z\d])+|([a-zA-Z\d])+([^a-zA-Z\d])+/)
 ]]
   });
 
