@@ -16,10 +16,12 @@ export class RegisterComponent {
   registerForm = this.fb.group({
     email: [null,Validators.required],
     username: [null, Validators.required],
-    password: [null, Validators.compose([
-      Validators.required, Validators.minLength(5)])
-    ],
-    shipping: ['free', Validators.required]
+    firstname:[null,Validators.required],
+    lastname:[null,Validators.required],
+    password: ['', [
+      Validators.required, 
+      Validators.pattern(/([^a-zA-Z\d])+([a-zA-Z\d])+|([a-zA-Z\d])+([^a-zA-Z\d])+/)
+]]
   });
 
   constructor(private fb: FormBuilder, private registerService: RegisterService) { }
@@ -28,9 +30,10 @@ export class RegisterComponent {
     {
       email: this.registerForm.get('email')?.value,
       password: this.registerForm.get('password')?.value,
-      username: this.registerForm.get('username')?.value
+      username: this.registerForm.get('username')?.value,
+      firstname: this.registerForm.get('firstname')?.value,
+      lastname: this.registerForm.get('lastname')?.value
     };
-   
 
     this.registerService.register(registerCredentials).subscribe({
       next: (v) => console.log(v),
