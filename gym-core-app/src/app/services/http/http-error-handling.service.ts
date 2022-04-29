@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { IdentityError } from 'src/app/models/identity-error';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpErrorHandlingService implements HttpInterceptor{
 
-  constructor(private _router: Router) { }
+  constructor(private router: Router, private authService: AuthService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler) {
       console.log('HTTP Request started');
@@ -36,26 +37,27 @@ export class HttpErrorHandlingService implements HttpInterceptor{
       return errorMessage;
   }
 
-  private handleError = (error: HttpErrorResponse) : string => {
-    if(error.status === 404){
-      return this.handleNotFound(error);
-    }
-    else if(error.status === 400){
-      return this.handleBadRequest(error);
-    }
-    else
-    {
-      return ''
+  private handleError(error: HttpErrorResponse) : string {
+    switch(error.status) {
+      case 404:
+        return this.handleNotFound(error);
+      case 400:
+        return this.handleBadRequest(error);
+      case 401:
+      case 403:
+        return this.handleAuthError(error);
+      default:
+        return '';
     }
   }
   
-  private handleNotFound = (error: HttpErrorResponse): string => {
-    this._router.navigate(['/404']);
+  private handleNotFound(error: HttpErrorResponse): string {
+    this.router.navigate(['/404']);
     return error.message;
   }
   
-  private handleBadRequest = (error: HttpErrorResponse): string => {
-    if(this._router.url === '/register'){
+  private handleBadRequest(error: HttpErrorResponse): string {
+    if(this.router.url === '/register'){
       let message = '';
       var values : any[];
       values = Object.values(error.error);
@@ -70,6 +72,10 @@ export class HttpErrorHandlingService implements HttpInterceptor{
     }
   }
   
+  private handleAuthError(error: HttpErrorResponse): string {
+    this.authService.logout();
+    return error.message;
+  }
 
 }
 

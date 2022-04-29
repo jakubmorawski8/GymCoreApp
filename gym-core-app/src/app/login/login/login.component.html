@@ -1,0 +1,29 @@
+<div class="login-container">
+  <div class="login-content">
+    <mat-toolbar class="login-toolbar" color="primary">LOGIN</mat-toolbar>
+    <mat-card>
+      <form [formGroup]="loginForm" novalidate (ngSubmit)="onSubmit()">
+        <mat-form-field>
+          <input matInput autofocus type="email" matInput placeholder="Email" formControlName="email">
+          <mat-error *ngIf="loginForm.controls['email'].hasError('required')">
+            E-mail is <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="loginForm.controls['email'].hasError('email')">
+            E-mail is <strong>incorrect</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="password" autocomplete="false" matInput placeholder="Password"
+            formControlName="password">
+          <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
+            Password is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <div class="socialMediaFlex">
+          <button class="loginButton" [disabled]="loginForm.invalid" type="submit" mat-raised-button
+            color="primary">Login</button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+</div>
