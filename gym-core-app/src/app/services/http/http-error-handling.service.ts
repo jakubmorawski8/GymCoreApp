@@ -45,7 +45,7 @@ export class HttpErrorHandlingService implements HttpInterceptor{
     }
     else
     {
-      return ''
+      return error.message;
     }
   }
   
