@@ -18,7 +18,7 @@ export class HttpErrorHandlingService implements HttpInterceptor{
           .pipe(
               catchError((error: HttpErrorResponse) => {
                 let errorMessage = this.handleError(error);
-                return throwError(errorMessage);
+                return throwError(() => new Error(errorMessage));
               })
           );
   }
@@ -47,7 +47,7 @@ export class HttpErrorHandlingService implements HttpInterceptor{
       case 403:
         return this.handleAuthError(error);
       default:
-        return '';
+        return error.message;
     }
   }
   

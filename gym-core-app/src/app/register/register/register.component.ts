@@ -20,7 +20,7 @@ export class RegisterComponent {
     lastname:[null,Validators.required],
     password: ['', [
       Validators.required, 
-      // Validators.pattern(/([^a-zA-Z\d])+([a-zA-Z\d])+|([a-zA-Z\d])+([^a-zA-Z\d])+/)
+      Validators.pattern(/([^a-zA-Z\d])+([a-zA-Z\d])+|([a-zA-Z\d])+([^a-zA-Z\d])+/)
 ]]
   });
 
@@ -37,11 +37,8 @@ export class RegisterComponent {
 
     this.registerService.register(registerCredentials).subscribe({
       next: (v) => console.log(v),
-      error: (e) => {
-        
-        var response = e as HttpErrorResponse;
-        var firsterror = response.error[Object.keys(response.error)[0]]
-        alert(firsterror)
+      error: (error) => {        
+        alert(error)
       },
       complete: () => console.info('complete')
     }
