@@ -1,4 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
+/* Add application styles & imports to this file! */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import Url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css");
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+body {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    margin: 0;
+    padding: 30px;
+  }
+  
+  html, body {
+    height: 100%;
+  }
+  

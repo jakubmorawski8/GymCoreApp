@@ -1,0 +1,30 @@
+<div class="login-container">
+  <div class="login-content">
+    <mat-toolbar class="login-toolbar"
+    color="primary">REGISTER</mat-toolbar>
+    <mat-card>
+    <form [formGroup]="registerForm" novalidate (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <input matInput autofocus type="email" matInput placeholder="Email" formControlName="email">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput autofocuts type="text" maxInput placeholder="Username" formControlName="username">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput autofocuts type="text" maxInput placeholder="First name" formControlName="firstname">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput autofocuts type="text" maxInput placeholder="Last name" formControlName="lastname"> 
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="password" autocomplete="false" matInput placeholder="Password" formControlName="password">
+      <mat-hint>Choose a password of at least eight characters, one uppercase letter and one number</mat-hint>
+    </mat-form-field>
+    <hr>
+    <div class="socialMediaFlex">
+        <button style="width:50%" [disabled]="registerForm.invalid"    type="submit" mat-raised-button color="primary">Submit</button>
+    </div>    
+    </form>
+    </mat-card>
+  </div>
+</div>
