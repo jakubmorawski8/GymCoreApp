@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegisterCredentials } from 'src/app/models/register-credentials';
-import { RegisterService } from 'src/app/services/auth/register.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 
 @Component({
@@ -24,7 +24,7 @@ export class RegisterComponent {
 ]]
   });
 
-  constructor(private fb: FormBuilder, private registerService: RegisterService) { }
+  constructor(private fb: FormBuilder, private registerService: AuthService) { }
   onSubmit(): void {
     let registerCredentials : RegisterCredentials =
     {
