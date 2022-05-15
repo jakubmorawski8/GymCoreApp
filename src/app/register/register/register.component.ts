@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RegisterCredentials } from 'src/app/models/register-credentials';
-import { AuthService } from 'src/app/services/auth/auth.service';
+import { Router } from '@angular/router';
+import { RegisterCredentials } from 'src/app/core/models/register-credentials';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
 
 
 @Component({
@@ -23,7 +24,8 @@ export class RegisterComponent {
 ]]
   });
 
-  constructor(private fb: FormBuilder, private registerService: AuthService) { }
+  constructor(private fb: FormBuilder, private registerService: AuthService,
+    private router: Router) { }
   onSubmit(): void {
     let registerCredentials : RegisterCredentials =
     {
@@ -35,7 +37,9 @@ export class RegisterComponent {
     };
 
     this.registerService.register(registerCredentials).subscribe({
-      next: (v) => console.log(v),
+      next: () => {
+        this.router.navigateByUrl('/');
+      },
       error: (error) => {        
         alert(error)
       },

@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first, Subscription } from 'rxjs';
-import { LoginCredentials } from 'src/app/models/login-credentials';
-import { AuthService } from 'src/app/services/auth/auth.service';
+import { LoginCredentials } from 'src/app/core/models/login-credentials';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
