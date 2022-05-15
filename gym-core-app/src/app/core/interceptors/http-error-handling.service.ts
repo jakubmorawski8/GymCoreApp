@@ -2,7 +2,7 @@ import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest}
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
-import { IdentityError } from 'src/app/models/identity-error';
+import { IdentityError } from 'src/app/core/models/identity-error';
 
 @Injectable({
   providedIn: 'root'

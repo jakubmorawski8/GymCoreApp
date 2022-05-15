@@ -1,8 +1,7 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RegisterCredentials } from 'src/app/models/register-credentials';
-import { RegisterService } from 'src/app/services/auth/register.service';
+import { RegisterCredentials } from 'src/app/core/models/register-credentials';
+import { RegisterService } from 'src/app/core/services/auth/register.service';
 
 
 @Component({
