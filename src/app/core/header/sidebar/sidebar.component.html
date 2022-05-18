@@ -1,31 +1,16 @@
-<!-- <h1>GymCore</h1>
-<nav>
-  <a routerLink="/register" routerLinkActive="active">Register</a>
-</nav>
-<router-outlet></router-outlet> -->
 <mat-toolbar>
     <button
       mat-icon-button
       *ngIf="sidenav.mode === 'over'"
-      (click)="sidenav.toggle()"
-    >
+      (click)="sidenav.toggle()">
       <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
       <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
     </button>
     Responsive side navigation
   </mat-toolbar>
-  
   <mat-sidenav-container>
     <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
-      <!-- <img
-        class="avatar mat-elevation-z8"
-        src="https://source.unsplash.com/c_GmwfHBDzk/200x200"
-      /> -->
-  
-      <!-- <h4 class="name">Imię Nazwisko</h4>-->
-  
       <mat-divider></mat-divider>
-  
       <button mat-button class="menu-button" routerLink="/home">
         <mat-icon>home</mat-icon>
         <span>Home</span>
@@ -34,9 +19,11 @@
         <mat-icon>person_add</mat-icon>
         <span>Register</span>
       </button>
-  
+      <button mat-button class="menu-button" routerLink="/login">
+        <mat-icon>login</mat-icon>
+        <span>Login</span>
+      </button>
       <mat-divider></mat-divider>
-  
       <button mat-button class="menu-button" routerLink="/help">
         <mat-icon>help</mat-icon>
         <span>Help</span>
