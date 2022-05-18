@@ -2,8 +2,8 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, map, Observable, tap, throwError } from 'rxjs';
-import { LoggedUser } from 'src/app/models/logged-user';
-import { LoginCredentials } from 'src/app/models/login-credentials';
+import { LoggedUser } from 'src/app/core/models/logged-user';
+import { LoginCredentials } from 'src/app/core/models/login-credentials';
 import { environment } from 'src/environments/environment';
 import { RegisterCredentials } from '../../models/register-credentials';
 import { TokenStorageService } from './token-storage.service';

@@ -2,8 +2,9 @@ import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest}
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
-import { IdentityError } from 'src/app/models/identity-error';
-import { AuthService } from '../auth/auth.service';
+import { IdentityError } from '../models/identity-error';
+import { AuthService } from '../services/auth/auth.service';
+
 
 @Injectable({
   providedIn: 'root'
