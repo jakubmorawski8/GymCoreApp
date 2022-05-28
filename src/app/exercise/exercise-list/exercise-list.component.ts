@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ExerciseCreateDialogComponent } from './exercise-create-dialog/exercise-create-dialog.component';
 
 @Component({
@@ -11,8 +11,16 @@ export class ExerciseListComponent implements OnInit {
 
   constructor(public dialog: MatDialog) { }
 
+
+  
   openDialog() {
-    const dialogRef = this.dialog.open(ExerciseCreateDialogComponent);
+    
+    let config: MatDialogConfig = {
+      panelClass: "dialog-responsive"
+    }
+
+    const dialogRef = this.dialog.open(ExerciseCreateDialogComponent,
+      config);
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
