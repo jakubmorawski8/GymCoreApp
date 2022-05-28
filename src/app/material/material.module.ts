@@ -7,11 +7,14 @@ import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
   declarations: [],
   imports: [
+    MatIconModule,
     MatInputModule,
     MatButtonModule,
     MatSelectModule,
@@ -19,9 +22,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatCardModule,
     ReactiveFormsModule,
     MatToolbarModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatDialogModule
   ],
   exports: [
+    MatIconModule,
     MatInputModule,
     MatButtonModule,
     MatSelectModule,
@@ -29,7 +34,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatCardModule,
     ReactiveFormsModule,
     MatToolbarModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatDialogModule
   ]
 })
 export class MaterialModule { }

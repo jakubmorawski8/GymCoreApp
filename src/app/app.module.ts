@@ -16,6 +16,7 @@ import { RegisterModule } from './register/register.module';
 import { LoginModule } from './login/login.module';
 import { FooterComponent} from './core/footer/footer/footer.component';
 import { HttpErrorHandlingService } from './core/interceptors/http-error-handling.service';
+import { ExerciseModule } from './exercise/exercise.module';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { HttpErrorHandlingService } from './core/interceptors/http-error-handlin
     BrowserAnimationsModule,
     LoginModule,
     RegisterModule,
+    ExerciseModule,
     FormsModule,
     HttpClientModule,
     LayoutModule,
