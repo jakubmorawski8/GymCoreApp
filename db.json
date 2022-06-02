@@ -1,0 +1,32 @@
+{
+  "exercise": [
+    {
+      "id": 1,
+      "created-date": "2022-06-01",
+      "modified-date": "2022-06-01",
+      "name": "wyciskanie sztangi lezac",
+      "description": "Wyciskanie sztangi to jedno z najpopularniejszych ćwiczeń wykonywanych przez osoby trenujące na siłowni.Ilość wyciśniętych kilogramów podczas tego ćwiczenia bardzo często stanowi o sile i poziomie zaawansowania.Istnieje kilka rodzajów wyciskania sztangi."
+    },
+    {
+      "name": "test",
+      "description": "test",
+      "created_date": "2022-06-02T20:33:18.834Z",
+      "modified_date": "2022-06-02T20:33:18.834Z",
+      "id": 2
+    },
+    {
+      "name": "nowe ",
+      "description": "nowe zadanie",
+      "created_date": "2022-06-02T20:33:32.050Z",
+      "modified_date": "2022-06-02T20:33:32.050Z",
+      "id": 3
+    },
+    {
+      "name": "spacer farmera",
+      "description": "najlepsze ćwiczenie na nogi",
+      "created_date": "2022-06-02T20:55:17.487Z",
+      "modified_date": "2022-06-02T20:55:17.487Z",
+      "id": 4
+    }
+  ]
+}
