@@ -3,9 +3,10 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ApiService } from 'src/app/core/services/jsonserver/api.service';
 import { ExerciseCreateDialogComponent } from './exercise-create-dialog/exercise-create-dialog.component';
 
-import {MatPaginator} from '@angular/material/paginator';
+import {MatPaginator, PageEvent} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
+import { Exercise } from 'src/app/core/models/exercise';
 
 
 @Component({
@@ -13,14 +14,25 @@ import {MatTableDataSource} from '@angular/material/table';
   templateUrl: './exercise-list.component.html',
   styleUrls: ['./exercise-list.component.scss']
 })
-export class ExerciseListComponent implements OnInit {
+export class ExerciseListComponent implements OnInit, AfterViewInit{
 displayedColumns: string[] = ['name', 'description','created_date','modified_date'];
-  dataSource!: MatTableDataSource<any>;
-
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
+  ELEMENT_DATA: Exercise[] = [];
+  isLoading = false;
+  totalRows = 0;
+  pageSize = 5;
+  currentPage = 0;
+  pageSizeOptions: number[] = [5, 10, 25, 100];
+  dataSource: MatTableDataSource<any> = new MatTableDataSource();
+
   constructor(public dialog: MatDialog, private api : ApiService) { }
+
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
   openDialog() {
     
     let config: MatDialogConfig = {
@@ -31,22 +43,40 @@ displayedColumns: string[] = ['name', 'description','created_date','modified_dat
       config);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      if(result === 'save')
+      {
+        this.loadData();
+      }     
+        
     });
   }
 
-  getAllExercises(){
-    this.api.getExercise()
+
+  loadData(){
+    this.isLoading = true;
+    this.api.getExercisePagin(this.currentPage,this.pageSize)
     .subscribe({
-      next : (res) =>{
-        this.dataSource = new MatTableDataSource(res);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-      },
-      error : () =>{
-        alert("Error while fetching the records");
-      }
-    });
+          next : (res) =>{
+          this.paginator.pageIndex = this.currentPage;
+          this.paginator.length = res.headers.get('X-Total-Count'); 
+          this.dataSource = new MatTableDataSource<any>(res.body);
+          this.dataSource.sort = this.sort;
+          },
+          error : (error) =>{
+            this.isLoading = false;
+            console.log(error);
+          }
+        });
+  }
+
+  pageChanged(event: PageEvent){
+    this.pageSize = event.pageSize;
+    this.currentPage = event.pageIndex;
+    this.loadData();
+  }
+
+  ngOnInit(): void {
+    this.loadData();
   }
 
   applyFilter(event: Event) {
@@ -57,13 +87,6 @@ displayedColumns: string[] = ['name', 'description','created_date','modified_dat
       this.dataSource.paginator.firstPage();
     }
   }
-
-
-
-  ngOnInit(): void {
-    this.getAllExercises();
-  }
-
 }
 
 
