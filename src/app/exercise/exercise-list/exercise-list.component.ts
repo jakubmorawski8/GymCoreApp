@@ -1,40 +1,38 @@
-import { Component, OnInit,ViewChild,AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ApiService } from 'src/app/core/services/jsonserver/api.service';
 import { ExerciseCreateDialogComponent } from './exercise-create-dialog/exercise-create-dialog.component';
-
-import {MatPaginator, PageEvent} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Exercise } from 'src/app/core/models/exercise';
-
 
 @Component({
   selector: 'app-exercise-list',
   templateUrl: './exercise-list.component.html',
   styleUrls: ['./exercise-list.component.scss']
 })
-export class ExerciseListComponent implements OnInit, AfterViewInit{
-displayedColumns: string[] = ['name', 'description','created_date','modified_date'];
+export class ExerciseListComponent implements OnInit, AfterViewInit {
+  displayedColumns: string[] = ['name', 'description', 'created_date', 'modified_date'];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   ELEMENT_DATA: Exercise[] = [];
-  isLoading = false;
+  isLoading = true;
   totalRows = 0;
   pageSize = 5;
   currentPage = 0;
   pageSizeOptions: number[] = [5, 10, 25, 100];
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
 
-  constructor(public dialog: MatDialog, private api : ApiService) { }
+  constructor(public dialog: MatDialog, private api: ApiService) { }
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
   openDialog() {
-    
+
     let config: MatDialogConfig = {
       panelClass: "dialog-responsive"
     }
@@ -43,33 +41,33 @@ displayedColumns: string[] = ['name', 'description','created_date','modified_dat
       config);
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result === 'save')
-      {
+      if (result === 'save') {
         this.loadData();
-      }     
-        
+      }
+
     });
   }
 
 
-  loadData(){
-    this.isLoading = true;
-    this.api.getExercisePagin(this.currentPage,this.pageSize)
-    .subscribe({
-          next : (res) =>{
+  loadData() {
+    this.api.getExercisePagin(this.currentPage, this.pageSize)
+      .subscribe({
+        next: (res) => {
+          this.isLoading = false;
           this.paginator.pageIndex = this.currentPage;
-          this.paginator.length = res.headers.get('X-Total-Count'); 
+          this.paginator.length = res.headers.get('X-Total-Count');
           this.dataSource = new MatTableDataSource<any>(res.body);
           this.dataSource.sort = this.sort;
-          },
-          error : (error) =>{
-            this.isLoading = false;
-            console.log(error);
-          }
-        });
+        },
+        error: (error) => {
+          console.log(error);
+        }
+      });
   }
 
-  pageChanged(event: PageEvent){
+
+  pageChanged(event: PageEvent) {
+    this.isLoading = true;
     this.pageSize = event.pageSize;
     this.currentPage = event.pageIndex;
     this.loadData();
