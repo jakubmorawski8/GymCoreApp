@@ -27,4 +27,10 @@ export class ApiService {
     params = params.append('_limit', String(limit));
     return this.http.get<any>('http://localhost:3000/exercise',{observe: 'response',params});
   }
+
+  getExerciseFilter(filterValue : string){
+    let params = new HttpParams();
+    params = params.append('name_like',filterValue);
+    return this.http.get<any>('http://localhost:3000/exercise',{observe: 'response',params});
+  }
 }

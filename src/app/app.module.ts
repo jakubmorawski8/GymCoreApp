@@ -17,6 +17,7 @@ import { LoginModule } from './login/login.module';
 import { FooterComponent} from './core/footer/footer/footer.component';
 import { HttpErrorHandlingService } from './core/interceptors/http-error-handling.service';
 import { ExerciseModule } from './exercise/exercise.module';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -41,6 +42,10 @@ import { ExerciseModule } from './exercise/exercise.module';
     MatIconModule,
     MatListModule
   ],
+  // exports: [
+  //   CommonModule,
+  //   FormsModule,
+  // ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
