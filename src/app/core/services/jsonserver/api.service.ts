@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
-import { nextTick } from 'process';
 import { BehaviorSubject, map, Observable, of, zip } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Exercise } from '../../models/exercise';
