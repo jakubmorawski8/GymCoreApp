@@ -10,9 +10,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule} from '@angular/material/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [],
@@ -30,7 +30,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatProgressBarModule
+    MatProgressBarModule,
   ],
   exports: [
     MatIconModule,
@@ -46,7 +46,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatProgressBarModule
-  ]
+    MatProgressBarModule,
+  ],
 })
-export class MaterialModule { }
+export class MaterialModule {}

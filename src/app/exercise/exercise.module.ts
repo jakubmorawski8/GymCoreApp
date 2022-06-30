@@ -5,14 +5,7 @@ import { MaterialModule } from '../material/material.module';
 import { ExerciseCreateDialogComponent } from './exercise-list/exercise-create-dialog/exercise-create-dialog.component';
 import { FormsModule } from '@angular/forms';
 @NgModule({
-  declarations: [
-    ExerciseListComponent,
-    ExerciseCreateDialogComponent,
-  ],
-  imports: [
-    CommonModule,
-    MaterialModule,
-    FormsModule
-  ]
+  declarations: [ExerciseListComponent, ExerciseCreateDialogComponent],
+  imports: [CommonModule, MaterialModule, FormsModule],
 })
-export class ExerciseModule { }
+export class ExerciseModule {}

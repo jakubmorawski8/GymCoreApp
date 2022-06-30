@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  AfterViewInit,
+  OnDestroy,
+} from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ApiService } from 'src/app/core/services/jsonserver/api.service';
 import { ExerciseCreateDialogComponent } from './exercise-create-dialog/exercise-create-dialog.component';
@@ -6,17 +12,21 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Exercise } from 'src/app/core/models/exercise';
-import { Subject, Subscription } from 'rxjs';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Subject, Subscription, throwError, } from 'rxjs';
+import { catchError, debounceTime, distinctUntilChanged, finalize, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-exercise-list',
   templateUrl: './exercise-list.component.html',
-  styleUrls: ['./exercise-list.component.scss']
+  styleUrls: ['./exercise-list.component.scss'],
 })
 export class ExerciseListComponent implements OnInit, AfterViewInit, OnDestroy {
-
-  displayedColumns: string[] = ['name', 'description', 'created_date', 'modified_date'];
+  displayedColumns: string[] = [
+    'name',
+    'description',
+    'created_date',
+    'modified_date',
+  ];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -27,25 +37,31 @@ export class ExerciseListComponent implements OnInit, AfterViewInit, OnDestroy {
   currentPage = 0;
   pageSizeOptions: number[] = [5, 10, 25, 100];
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
-  inputSearchValue! : string;
+  inputSearchValue!: string;
+
+  exercises: Exercise[] = [];
+
+  lengthTmp = 1000;
 
   private subscriptions = new Subscription();
   searchValueChanged: Subject<string> = new Subject<string>();
 
-  constructor(public dialog: MatDialog, private api: ApiService) { }
-
+  constructor(public dialog: MatDialog, private api: ApiService) {}
 
   ngOnInit(): void {
-    this.subscriptions.add(
-      this.searchValueChanged.pipe(
-        debounceTime(1000),
-        distinctUntilChanged())
-        .subscribe(input => {
-          this.applyFilter(input);
-        }));
 
+    
+
+    this.subscriptions.add(
+      this.searchValueChanged
+        .pipe(debounceTime(1000), distinctUntilChanged())
+        .subscribe((input) => {
+          this.applyFilter(input);
+        })
+    );
 
     this.loadData();
+    // this.loadRows();
   }
 
   ngAfterViewInit(): void {
@@ -59,35 +75,54 @@ export class ExerciseListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   openDialog() {
     let config: MatDialogConfig = {
-      panelClass: "dialog-responsive"
-    }
+      panelClass: 'dialog-responsive',
+    };
 
-    const dialogRef = this.dialog.open(ExerciseCreateDialogComponent,
-      config);
+    const dialogRef = this.dialog.open(ExerciseCreateDialogComponent, config);
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result === 'save') {
         this.loadData();
       }
-
     });
   }
 
   loadData() {
     this.subscriptions.add(
-      this.api.getExercisePagin(this.currentPage, this.pageSize)
-        .subscribe({
-          next: (res) => {
-            this.isLoading = false;
-            this.paginator.pageIndex = this.currentPage;
-            this.paginator.length = res.headers.get('X-Total-Count');
-            this.dataSource = new MatTableDataSource<any>(res.body);
-            this.dataSource.sort = this.sort;
-          },
-          error: (error) => {
-            console.log(error);
-          }
-        }));
+      this.api.getExercisePagin(this.currentPage, this.pageSize).subscribe({
+        next: (res) => {
+          this.isLoading = false;
+          this.paginator.pageIndex = this.currentPage;
+          this.paginator.length = res.headers.get('X-Total-Count');
+          this.dataSource = new MatTableDataSource<any>(res.body);
+          this.dataSource.sort = this.sort;
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      })
+    );
+  }
+
+  loadRows(){
+    this.isLoading = true;
+    this.api.getData(
+      this.inputSearchValue,
+      this.sort?.active,
+      this.sort?.direction ?? "asc",
+      this.paginator?.pageIndex ?? 0,
+      this.paginator?.pageSize ?? 5
+    ).pipe(
+      tap(exercises => {
+        this.exercises = exercises
+      }),
+      catchError(err => {
+        console.log("Error loading exercises",err);
+        return throwError(()=>new Error(err));
+      }),
+      finalize(() => this.isLoading = false)
+    )
+    .subscribe();
   }
 
   pageChanged(event: PageEvent) {
@@ -95,26 +130,25 @@ export class ExerciseListComponent implements OnInit, AfterViewInit, OnDestroy {
     this.pageSize = event.pageSize;
     this.currentPage = event.pageIndex;
     this.loadData();
+
+    // this.loadRows();
+
   }
 
   private applyFilter(inputValue: string) {
     this.inputSearchValue = inputValue;
-    if(inputValue !=="")
-    {
+    if (inputValue !== '') {
       this.subscriptions.add(
-        this.api.getExerciseFilter(inputValue).subscribe(res => {
+        this.api.getExerciseFilter(inputValue).subscribe((res) => {
           this.isLoading = false;
           this.paginator.pageIndex = this.currentPage;
           this.paginator.length = res.headers.get('X-Total-Count');
           this.dataSource = new MatTableDataSource<any>(res.body);
           this.dataSource.sort = this.sort;
-        }));
-    }
-    else
-    {
+        })
+      );
+    } else {
       this.loadData();
     }
   }
 }
-
-
