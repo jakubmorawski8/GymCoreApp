@@ -4,6 +4,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { BehaviorSubject, map, Observable, of, zip } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Exercise } from '../../models/exercise';
+import { ExercisesPageable } from '../../models/exercises-pageable';
 
 const exerciseURL: string = environment.urlJsonServer + 'exercise';
 
@@ -45,7 +46,7 @@ export class ApiService {
     sortOrder = 'asc',
     pageNumber = 0,
     pageSize = 3
-  ): Observable<Exercise[]> {
+  ): Observable<ExercisesPageable> {
     return this.http.get<Exercise[]>(exerciseURL, {
       params: new HttpParams()
         .set('name_like', nameFilter)
@@ -53,7 +54,9 @@ export class ApiService {
         .set('_order', sortOrder)
         .set('_page', pageNumber.toString())
         .set('_limit', pageSize.toString()),
-    });
+    }).pipe(map(res =>{
+      return new ExercisesPageable(res,100);
+    }))
   }
 
   getExerciseFilter(filterValue: string) {

@@ -41,8 +41,6 @@ export class ExerciseListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   exercises: Exercise[] = [];
 
-  lengthTmp = 1000;
-
   private subscriptions = new Subscription();
   searchValueChanged: Subject<string> = new Subject<string>();
 
@@ -60,8 +58,7 @@ export class ExerciseListComponent implements OnInit, AfterViewInit, OnDestroy {
         })
     );
 
-    this.loadData();
-    // this.loadRows();
+    this.loadRows();
   }
 
   ngAfterViewInit(): void {
@@ -82,26 +79,9 @@ export class ExerciseListComponent implements OnInit, AfterViewInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result === 'save') {
-        this.loadData();
+        this.loadRows();
       }
     });
-  }
-
-  loadData() {
-    this.subscriptions.add(
-      this.api.getExercisePagin(this.currentPage, this.pageSize).subscribe({
-        next: (res) => {
-          this.isLoading = false;
-          this.paginator.pageIndex = this.currentPage;
-          this.paginator.length = res.headers.get('X-Total-Count');
-          this.dataSource = new MatTableDataSource<any>(res.body);
-          this.dataSource.sort = this.sort;
-        },
-        error: (error) => {
-          console.log(error);
-        },
-      })
-    );
   }
 
   loadRows(){
@@ -129,7 +109,7 @@ export class ExerciseListComponent implements OnInit, AfterViewInit, OnDestroy {
     this.isLoading = true;
     this.pageSize = event.pageSize;
     this.currentPage = event.pageIndex;
-    this.loadData();
+    this.loadRows();
 
     // this.loadRows();
 
@@ -148,7 +128,7 @@ export class ExerciseListComponent implements OnInit, AfterViewInit, OnDestroy {
         })
       );
     } else {
-      this.loadData();
+      this.loadRows();
     }
   }
 }
