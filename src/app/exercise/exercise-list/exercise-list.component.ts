@@ -94,7 +94,8 @@ export class ExerciseListComponent implements OnInit, AfterViewInit, OnDestroy {
       this.paginator?.pageSize ?? 5
     ).pipe(
       tap(exercises => {
-        this.exercises = exercises
+        this.exercises = exercises.items
+        this.paginator.length = exercises.totalCount
       }),
       catchError(err => {
         console.log("Error loading exercises",err);
@@ -110,9 +111,6 @@ export class ExerciseListComponent implements OnInit, AfterViewInit, OnDestroy {
     this.pageSize = event.pageSize;
     this.currentPage = event.pageIndex;
     this.loadRows();
-
-    // this.loadRows();
-
   }
 
   private applyFilter(inputValue: string) {

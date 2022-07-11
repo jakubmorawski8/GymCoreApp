@@ -47,7 +47,8 @@ export class ApiService {
     pageNumber = 0,
     pageSize = 3
   ): Observable<ExercisesPageable> {
-    return this.http.get<Exercise[]>(exerciseURL, {
+    return this.http.get<any>(exerciseURL, {
+      observe: 'response',
       params: new HttpParams()
         .set('name_like', nameFilter)
         .set('_sort', sortField)
@@ -55,7 +56,7 @@ export class ApiService {
         .set('_page', pageNumber.toString())
         .set('_limit', pageSize.toString()),
     }).pipe(map(res =>{
-      return new ExercisesPageable(res,100);
+      return new ExercisesPageable(res.body,Number(res.headers.get('X-Total-Count')));
     }))
   }
 
