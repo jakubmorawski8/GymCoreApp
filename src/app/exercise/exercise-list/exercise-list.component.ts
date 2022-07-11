@@ -9,7 +9,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ApiService } from 'src/app/core/services/jsonserver/api.service';
 import { ExerciseCreateDialogComponent } from './exercise-create-dialog/exercise-create-dialog.component';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Exercise } from 'src/app/core/models/exercise';
 import { Subject, Subscription, throwError, } from 'rxjs';
@@ -62,7 +62,7 @@ export class ExerciseListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
+    // this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
@@ -85,7 +85,7 @@ export class ExerciseListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   loadRows(){
-    this.isLoading = true;
+    this.isLoading = false;
     this.api.getData(
       this.inputSearchValue,
       this.sort?.active,
@@ -94,7 +94,7 @@ export class ExerciseListComponent implements OnInit, AfterViewInit, OnDestroy {
       this.paginator?.pageSize ?? 5
     ).pipe(
       tap(exercises => {
-        this.exercises = exercises.items
+        this.dataSource.data = exercises.items;
         this.paginator.length = exercises.totalCount
       }),
       catchError(err => {
@@ -128,5 +128,14 @@ export class ExerciseListComponent implements OnInit, AfterViewInit, OnDestroy {
     } else {
       this.loadRows();
     }
+  }
+
+  sorting(direction : string){
+    // console.log(direction);
+  }
+
+  sortChange(sortState: Sort) {
+    this.sorting(sortState.direction);
+    this.loadRows();
   }
 }
