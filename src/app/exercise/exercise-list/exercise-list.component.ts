@@ -47,9 +47,6 @@ export class ExerciseListComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(public dialog: MatDialog, private api: ApiService) {}
 
   ngOnInit(): void {
-
-    
-
     this.subscriptions.add(
       this.searchValueChanged
         .pipe(debounceTime(1000), distinctUntilChanged())
@@ -90,12 +87,13 @@ export class ExerciseListComponent implements OnInit, AfterViewInit, OnDestroy {
       this.inputSearchValue,
       this.sort?.active,
       this.sort?.direction ?? "asc",
-      this.paginator?.pageIndex ?? 0,
+      this.currentPage ?? 0,
       this.paginator?.pageSize ?? 5
     ).pipe(
       tap(exercises => {
         this.dataSource.data = exercises.items;
         this.paginator.length = exercises.totalCount
+        this.dataSource.sort = this.sort;
       }),
       catchError(err => {
         console.log("Error loading exercises",err);
@@ -115,27 +113,14 @@ export class ExerciseListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private applyFilter(inputValue: string) {
     this.inputSearchValue = inputValue;
-    if (inputValue !== '') {
-      this.subscriptions.add(
-        this.api.getExerciseFilter(inputValue).subscribe((res) => {
-          this.isLoading = false;
-          this.paginator.pageIndex = this.currentPage;
-          this.paginator.length = res.headers.get('X-Total-Count');
-          this.dataSource = new MatTableDataSource<any>(res.body);
-          this.dataSource.sort = this.sort;
-        })
-      );
-    } else {
-      this.loadRows();
-    }
-  }
-
-  sorting(direction : string){
-    // console.log(direction);
+    this.currentPage = 0;
+    this.sort.active = 'name'
+    this.sort.direction = 'asc'
+    this.loadRows();  
   }
 
   sortChange(sortState: Sort) {
-    this.sorting(sortState.direction);
+    this.currentPage = 0;
     this.loadRows();
   }
 }

@@ -47,17 +47,29 @@ export class ApiService {
     pageNumber = 0,
     pageSize = 3
   ): Observable<ExercisesPageable> {
-    return this.http.get<any>(exerciseURL, {
-      observe: 'response',
-      params: new HttpParams()
-        .set('name_like', nameFilter)
-        .set('_sort', sortField)
-        .set('_order', sortOrder)
-        .set('_page', pageNumber.toString())
-        .set('_limit', pageSize.toString()),
-    }).pipe(map(res =>{
-      return new ExercisesPageable(res.body,Number(res.headers.get('X-Total-Count')));
-    }))
+    let params = new HttpParams();
+    params = params.set('_sort', sortField);
+    params = params.set('_order', sortOrder);
+    params = params.set('_page', (pageNumber + 1).toString());
+    params = params.set('_limit', pageSize.toString());
+
+    if (nameFilter != '' && nameFilter != undefined) {
+      params = params.set('name_like', nameFilter);
+    }
+
+    return this.http
+      .get<any>(exerciseURL, {
+        observe: 'response',
+        params
+      })
+      .pipe(
+        map((res) => {
+          return new ExercisesPageable(
+            res.body,
+            Number(res.headers.get('X-Total-Count'))
+          );
+        })
+      );
   }
 
   getExerciseFilter(filterValue: string) {
