@@ -35,6 +35,8 @@ export class ExerciseListComponent implements OnInit, AfterViewInit, OnDestroy {
   totalRows = 0;
   pageSize = 5;
   currentPage = 0;
+  defaultSortField = 'name';
+  defaultSortDirection = 'asc';
   pageSizeOptions: number[] = [5, 10, 25, 100];
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
   inputSearchValue!: string;
@@ -59,7 +61,6 @@ export class ExerciseListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    // this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
@@ -85,8 +86,8 @@ export class ExerciseListComponent implements OnInit, AfterViewInit, OnDestroy {
     this.isLoading = false;
     this.api.getData(
       this.inputSearchValue,
-      this.sort?.active,
-      this.sort?.direction ?? "asc",
+      this.sort?.active ?? this.defaultSortField,
+      this.sort?.direction ?? this.defaultSortDirection,
       this.currentPage ?? 0,
       this.paginator?.pageSize ?? 5
     ).pipe(

@@ -42,10 +42,10 @@ export class ApiService {
 
   getData(
     nameFilter = '',
-    sortField = 'id',
-    sortOrder = 'asc',
+    sortField : string,
+    sortOrder: string,
     pageNumber = 0,
-    pageSize = 3
+    pageSize : number
   ): Observable<ExercisesPageable> {
     let params = new HttpParams();
     params = params.set('_sort', sortField);
