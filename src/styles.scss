@@ -7,39 +7,6 @@
 @include mat-core(); 
 
 // define a real custom palette (using http://mcg.mbitson.com)
-$md-gymcoreorange: (
-    50 : #fcf2e7,
-    100 : #f8dec3,
-    200 : #f3c89c,
-    300 : #eeb274,
-    400 : #eaa256,
-    500 : #e69138,
-    600 : #e38932,
-    700 : #df7e2b,
-    800 : #db7424,
-    900 : #d56217,
-    A100 : #ffffff,
-    A200 : #ffe3d4,
-    A400 : #ffc3a1,
-    A700 : #ffb287,
-    contrast: (
-        50 : #000000,
-        100 : #000000,
-        200 : #000000,
-        300 : #000000,
-        400 : #000000,
-        500 : #000000,
-        600 : #000000,
-        700 : #000000,
-        800 : #000000,
-        900 : #ffffff,
-        A100 : #000000,
-        A200 : #000000,
-        A400 : #000000,
-        A700 : #000000,
-    )
-);
-
 $bv-orange: (
     50: #ffffff,
     100: #fff7f4,
@@ -71,12 +38,15 @@ $bv-orange: (
         A400: $black-87-opacity,
         A700: white,
     )
+
+    
 );
 
 $bv-palette-primary: mat-palette($bv-orange);
 $bv-palette-accent:  mat-palette($bv-orange);
+$bv-palette-warn:    mat-palette($mat-blue-grey);
 
-$bv-theme: mat-light-theme($bv-palette-primary, $bv-palette-accent);
+$bv-theme: mat-light-theme($bv-palette-primary, $bv-palette-accent, $bv-palette-warn);
 
 @include angular-material-theme($bv-theme);
 
@@ -95,4 +65,14 @@ h3,
 h4,
 p {
     margin: 0;
+}
+
+.dialog-responsive {
+    width: 40%;
+}
+
+@media only screen and (max-width: 760px) {
+    .dialog-responsive {
+        width: 100%;
+    }
 }

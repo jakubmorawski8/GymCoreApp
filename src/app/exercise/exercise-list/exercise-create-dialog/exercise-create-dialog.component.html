@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>Add Exercise</h1>
+<div mat-dialog-content>
+    <form [formGroup]="exerciseForm" novalidate (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input formControlName="name" matInput placeholder="Name">
+            <mat-icon matSuffix>directions_run</mat-icon>
+            <mat-hint>the name of the exercise</mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <textarea formControlName="description" matInput></textarea>
+            <mat-icon matSuffix>description</mat-icon>
+            <mat-hint>a short description of the exercise</mat-hint>
+        </mat-form-field>
+        <div mat-dialog-action [align]="'end'">
+            <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+            <button mat-raised-button color="primary" mat-dialog-close [disabled]="exerciseForm.invalid" type="submit">Save</button>
+        </div>
+    </form>    
+</div>
+

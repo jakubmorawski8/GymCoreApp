@@ -16,6 +16,8 @@ import { RegisterModule } from './register/register.module';
 import { LoginModule } from './login/login.module';
 import { FooterComponent} from './core/footer/footer/footer.component';
 import { HttpErrorHandlingService } from './core/interceptors/http-error-handling.service';
+import { ExerciseModule } from './exercise/exercise.module';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -30,6 +32,7 @@ import { HttpErrorHandlingService } from './core/interceptors/http-error-handlin
     BrowserAnimationsModule,
     LoginModule,
     RegisterModule,
+    ExerciseModule,
     FormsModule,
     HttpClientModule,
     LayoutModule,
@@ -39,6 +42,10 @@ import { HttpErrorHandlingService } from './core/interceptors/http-error-handlin
     MatIconModule,
     MatListModule
   ],
+  // exports: [
+  //   CommonModule,
+  //   FormsModule,
+  // ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

@@ -1,0 +1,249 @@
+{
+  "exercise": [
+    {
+      "id": 1,
+      "created-date": "2022-06-01",
+      "modified-date": "2022-06-01",
+      "name": "wyciskanie sztangi lezac",
+      "description": "Wyciskanie sztangi to jedno z najpopularniejszych ćwiczeń wykonywanych przez osoby trenujące na siłowni.Ilość wyciśniętych kilogramów podczas tego ćwiczenia bardzo często stanowi o sile i poziomie zaawansowania.Istnieje kilka rodzajów wyciskania sztangi."
+    },
+    {
+      "name": "Przyciąganie drążka wyciągu górnego do klatki piersiowej siedząc",
+      "description": "",
+      "created_date": "2022-06-17T11:22:06.898Z",
+      "modified_date": "2022-06-17T11:22:06.898Z",
+      "id": 2
+    },
+    {
+      "name": "Przyciągnięcia drążka wyciągu dolnego do brzucha siedząc",
+      "description": "",
+      "created_date": "2022-06-17T11:22:16.421Z",
+      "modified_date": "2022-06-17T11:22:16.421Z",
+      "id": 3
+    },
+    {
+      "name": "Wyprosty tułowia na ławce rzymskiej",
+      "description": "",
+      "created_date": "2022-06-17T11:22:22.703Z",
+      "modified_date": "2022-06-17T11:22:22.703Z",
+      "id": 4
+    },
+    {
+      "name": "Wyciskanie sztangi leżąc na ławce poziomej",
+      "description": "",
+      "created_date": "2022-06-17T11:22:29.921Z",
+      "modified_date": "2022-06-17T11:22:29.921Z",
+      "id": 5
+    },
+    {
+      "name": "Rozpiętki na butterfly",
+      "description": "",
+      "created_date": "2022-06-17T11:22:35.506Z",
+      "modified_date": "2022-06-17T11:22:35.506Z",
+      "id": 6
+    },
+    {
+      "name": "Wznosy hantli bokiem w górę",
+      "description": "",
+      "created_date": "2022-06-17T11:22:56.455Z",
+      "modified_date": "2022-06-17T11:22:56.455Z",
+      "id": 7
+    },
+    {
+      "name": "Wznosy hantli przodem w górę",
+      "description": "",
+      "created_date": "2022-06-17T11:23:05.232Z",
+      "modified_date": "2022-06-17T11:23:05.232Z",
+      "id": 8
+    },
+    {
+      "name": "Odwrotne rozpiętki na maszynie",
+      "description": "",
+      "created_date": "2022-06-17T11:23:13.977Z",
+      "modified_date": "2022-06-17T11:23:13.977Z",
+      "id": 9
+    },
+    {
+      "name": "Wyprosty nóg na maszynie siedząc",
+      "description": "",
+      "created_date": "2022-06-17T11:23:19.075Z",
+      "modified_date": "2022-06-17T11:23:19.075Z",
+      "id": 10
+    },
+    {
+      "name": "Ugięcia nóg na maszynie leżąc",
+      "description": "",
+      "created_date": "2022-06-17T11:23:25.870Z",
+      "modified_date": "2022-06-17T11:23:25.870Z",
+      "id": 11
+    },
+    {
+      "name": "Wypchnięcia platformy suwnicy siedząc",
+      "description": "",
+      "created_date": "2022-06-17T11:23:31.136Z",
+      "modified_date": "2022-06-17T11:23:31.136Z",
+      "id": 12
+    },
+    {
+      "name": "Wspięcia na palce na podwyższeniu stojąc z obciążeniem",
+      "description": "",
+      "created_date": "2022-06-17T11:23:37.870Z",
+      "modified_date": "2022-06-17T11:23:37.870Z",
+      "id": 13
+    },
+    {
+      "name": "Wspięcia na palce na maszynie o nogach ugiętych",
+      "description": "",
+      "created_date": "2022-06-17T11:23:42.986Z",
+      "modified_date": "2022-06-17T11:23:42.986Z",
+      "id": 14
+    },
+    {
+      "name": "Wznosy nóg w górę leżąc",
+      "description": "",
+      "created_date": "2022-06-17T11:23:50.684Z",
+      "modified_date": "2022-06-17T11:23:50.684Z",
+      "id": 15
+    },
+    {
+      "name": "Spięcia brzucha na ławce ujemnej",
+      "description": "",
+      "created_date": "2022-06-17T11:23:55.633Z",
+      "modified_date": "2022-06-17T11:23:55.633Z",
+      "id": 16
+    },
+    {
+      "name": "Prostowanie przedramion z linkami wyciągu górnego",
+      "description": "",
+      "created_date": "2022-06-17T12:26:00.136Z",
+      "modified_date": "2022-06-17T12:26:00.136Z",
+      "id": 17
+    },
+    {
+      "name": "Prostowanie przedramion z wyciągu górnego",
+      "description": "",
+      "created_date": "2022-06-17T12:26:06.093Z",
+      "modified_date": "2022-06-17T12:26:06.093Z",
+      "id": 18
+    },
+    {
+      "name": "Ugięcia przedramion z drążkiem wyciągu dolnego",
+      "description": "",
+      "created_date": "2022-06-17T12:26:12.735Z",
+      "modified_date": "2022-06-17T12:26:12.735Z",
+      "id": 19
+    },
+    {
+      "name": "werew",
+      "description": "rwere",
+      "created_date": "2022-06-18T17:28:43.439Z",
+      "modified_date": "2022-06-18T17:28:43.439Z",
+      "id": 20
+    },
+    {
+      "name": "1",
+      "description": "",
+      "created_date": "2022-07-14T07:39:11.103Z",
+      "modified_date": "2022-07-14T07:39:11.103Z",
+      "id": 21
+    },
+    {
+      "name": "2",
+      "description": "",
+      "created_date": "2022-07-14T07:39:13.591Z",
+      "modified_date": "2022-07-14T07:39:13.591Z",
+      "id": 22
+    },
+    {
+      "name": "3",
+      "description": "",
+      "created_date": "2022-07-14T07:39:15.870Z",
+      "modified_date": "2022-07-14T07:39:15.870Z",
+      "id": 23
+    },
+    {
+      "name": "4",
+      "description": "",
+      "created_date": "2022-07-14T07:39:17.820Z",
+      "modified_date": "2022-07-14T07:39:17.820Z",
+      "id": 24
+    },
+    {
+      "name": "5",
+      "description": "",
+      "created_date": "2022-07-14T07:39:19.870Z",
+      "modified_date": "2022-07-14T07:39:19.870Z",
+      "id": 25
+    },
+    {
+      "name": "ćwiczenie 1",
+      "description": "",
+      "created_date": "2022-07-14T07:42:22.306Z",
+      "modified_date": "2022-07-14T07:42:22.306Z",
+      "id": 26
+    },
+    {
+      "name": "ćwiczenie 2",
+      "description": "",
+      "created_date": "2022-07-14T07:42:26.042Z",
+      "modified_date": "2022-07-14T07:42:26.042Z",
+      "id": 27
+    },
+    {
+      "name": "ćwiczenie 3",
+      "description": "",
+      "created_date": "2022-07-14T07:42:28.931Z",
+      "modified_date": "2022-07-14T07:42:28.931Z",
+      "id": 28
+    },
+    {
+      "name": "ćwiczenie 4",
+      "description": "",
+      "created_date": "2022-07-14T07:42:31.757Z",
+      "modified_date": "2022-07-14T07:42:31.757Z",
+      "id": 29
+    },
+    {
+      "name": "ćwiczenie 5",
+      "description": "",
+      "created_date": "2022-07-14T07:42:35.068Z",
+      "modified_date": "2022-07-14T07:42:35.068Z",
+      "id": 30
+    },
+    {
+      "name": "ćwiczenie 6",
+      "description": "",
+      "created_date": "2022-07-14T07:42:38.003Z",
+      "modified_date": "2022-07-14T07:42:38.003Z",
+      "id": 31
+    },
+    {
+      "name": "ćwiczenie 7",
+      "description": "",
+      "created_date": "2022-07-14T07:42:41.835Z",
+      "modified_date": "2022-07-14T07:42:41.835Z",
+      "id": 32
+    },
+    {
+      "name": "33",
+      "description": "",
+      "created_date": "2022-07-19T18:49:24.088Z",
+      "modified_date": "2022-07-19T18:49:24.088Z",
+      "id": 33
+    },
+    {
+      "name": "0",
+      "description": "",
+      "created_date": "2022-07-19T18:49:35.130Z",
+      "modified_date": "2022-07-19T18:49:35.130Z",
+      "id": 34
+    },
+    {
+      "name": "zx9",
+      "description": "",
+      "created_date": "2022-07-19T18:49:42.241Z",
+      "modified_date": "2022-07-19T18:49:42.241Z",
+      "id": 35
+    }
+  ]
+}
