@@ -1,9 +1,9 @@
 <p>My exercises</p>
-<div class="label">Actions</div>
-<div class="button-row">
+<div style="position:relative">
   <div class="flex-container">
+    <div class="label">Actions</div>
     <div class="button-container">
-      <button
+      <button 
         mat-fab
         (click)="openDialog()"
         color="primary"
@@ -11,26 +11,17 @@
         <mat-icon>add</mat-icon>
       </button>
     </div>
-    <div class="button-container">
-      <button mat-fab color="accent" aria-label="Edit exercise">
-        <mat-icon>edit</mat-icon>
-      </button>
-    </div>
-    <div class="button-container">
-      <button mat-fab color="warn" aria-label="Delete exercise">
-        <mat-icon>delete</mat-icon>
-      </button>
-    </div>
   </div>
+  <mat-form-field appearance="standard">
+    <mat-label>Filter</mat-label>
+    <input
+      matInput
+      [ngModel]="inputSearchValue"
+      (ngModelChange)="searchValueChanged.next($event)"
+    />
+  </mat-form-field>
 </div>
-<mat-form-field appearance="standard">
-  <mat-label>Filter</mat-label>
-  <input
-    matInput
-    [ngModel]="inputSearchValue"
-    (ngModelChange)="searchValueChanged.next($event)"
-  />
-</mat-form-field>
+
 <div class="mat-elevation-z8">
   <div *ngIf="isLoading; else table">
     <mat-progress-bar mode="query"></mat-progress-bar>
