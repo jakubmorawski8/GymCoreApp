@@ -1,4 +1,5 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { identifierName } from '@angular/compiler';
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { BehaviorSubject, map, Observable, of, zip } from 'rxjs';
@@ -24,6 +25,10 @@ export class ApiService {
     data.created_date = new Date(Date.now());
     data.modified_date = new Date(Date.now());
     return this.http.post<any>('http://localhost:3000/exercise', data);
+  }
+
+  updateExercise(data : Exercise, id : number){
+    return this.http.put<any>(exerciseURL + "/" + id,data);
   }
 
   getExercise() {

@@ -14,6 +14,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Exercise } from 'src/app/core/models/exercise';
 import { Subject, Subscription, throwError, } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, finalize, tap } from 'rxjs/operators';
+import { ExerciseEditDialogComponent } from './exercise-edit-dialog/exercise-edit-dialog.component';
 
 @Component({
   selector: 'app-exercise-list',
@@ -26,6 +27,7 @@ export class ExerciseListComponent implements OnInit, AfterViewInit, OnDestroy {
     'description',
     'created_date',
     'modified_date',
+    'actions'
   ];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -68,7 +70,7 @@ export class ExerciseListComponent implements OnInit, AfterViewInit, OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
-  openDialog() {
+  openCreateDialog() {
     let config: MatDialogConfig = {
       panelClass: 'dialog-responsive',
     };
@@ -81,6 +83,22 @@ export class ExerciseListComponent implements OnInit, AfterViewInit, OnDestroy {
       }
     });
   }
+
+  openEditDialog(data: Exercise) {
+    let config: MatDialogConfig = {
+      panelClass: 'dialog-responsive',
+      data:data
+    };
+
+    const dialogRef = this.dialog.open(ExerciseCreateDialogComponent, config);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === 'save') {
+        this.loadRows();
+      }
+    });
+  }
+
 
   loadRows(){
     this.isLoading = false;

@@ -21,34 +21,59 @@ export class ExerciseCreateDialogComponent implements OnInit {
     private formBuilder: FormBuilder,
     private api: ApiService,
     public dialogRef: MatDialogRef<ExerciseCreateDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public createData: any
+    @Inject(MAT_DIALOG_DATA) public exerciseDialogData: Exercise
   ) {}
   exerciseForm!: FormGroup;
+  caption: string = 'Create data';
+  updateMode: boolean = false;
 
   ngOnInit(): void {
     this.exerciseForm = this.formBuilder.group({
       name: ['', Validators.required],
       description: [''],
     });
+
+    if (
+      this.exerciseDialogData != undefined &&
+      this.exerciseDialogData != null
+    ) {
+      this.caption = 'Edit data';
+      this.exerciseForm.controls['name'].setValue(this.exerciseDialogData.name);
+      this.exerciseForm.controls['description'].setValue(
+        this.exerciseDialogData.description
+      );
+      this.updateMode = true;
+    }
   }
 
   onSubmit() {
     if (this.exerciseForm.valid) {
-      let exercise: Exercise = {
-        name: this.exerciseForm.get('name')?.value,
-        description: this.exerciseForm.get('description')?.value,
-        created_date: new Date(Date.now()),
-        modified_date: new Date(Date.now()),
-      };
+      let exercise: Exercise = 
+      new Exercise(this.exerciseForm.get('name')?.value,
+      this.exerciseForm.get('description')?.value,
+      new Date(Date.now()),
+      new Date(Date.now()));
 
-      this.api.postExercise(exercise).subscribe({
-        next: (res) => {
-          this.dialogRef.close('save');
-        },
-        error: (x) => {
-          alert('Error while adding the exercise' + x);
-        },
-      });
+
+      if (!this.updateMode) {
+        this.api.postExercise(exercise).subscribe({
+          next: (res) => {
+            this.dialogRef.close('save');
+          },
+          error: (x) => {
+            alert('Error while adding the exercise' + x);
+          },
+        });
+      } else {
+        this.api.updateExercise(exercise,exercise.id).subscribe({
+          next: (res) => {
+            this.dialogRef.close('save');
+          },
+          error: (x) => {
+            alert('Error while updating the exercise' + x);
+          },
+        });
+      }
     }
   }
 }
