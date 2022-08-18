@@ -1,3 +1,4 @@
+import { toBase64String } from '@angular/compiler/src/output/source_map';
 import {
   Component,
   EventEmitter,
@@ -54,26 +55,29 @@ export class ExerciseCreateDialogComponent implements OnInit {
       new Date(Date.now()),
       new Date(Date.now()));
 
-
       if (!this.updateMode) {
         this.api.postExercise(exercise).subscribe({
           next: (res) => {
-            this.dialogRef.close('save');
+            // this.dialogRef.close('save');
           },
           error: (x) => {
             alert('Error while adding the exercise' + x);
           },
         });
       } else {
-        this.api.updateExercise(exercise,exercise.id).subscribe({
-          next: (res) => {
-            this.dialogRef.close('save');
-          },
-          error: (x) => {
-            alert('Error while updating the exercise' + x);
-          },
-        });
+        if(this.exerciseDialogData.id)
+        {
+          this.api.updateExercise(exercise,this.exerciseDialogData.id).subscribe({
+            next: (res) => {
+              // this.dialogRef.close('save');
+            },
+            error: (x) => {
+              alert('Error while updating the exercise' + x);
+            },
+          });
+        }
       }
+      this.dialogRef.close('save');
     }
   }
 }

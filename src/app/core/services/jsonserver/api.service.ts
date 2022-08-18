@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { identifierName } from '@angular/compiler';
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
-import { BehaviorSubject, map, Observable, of, zip } from 'rxjs';
+import { BehaviorSubject, delay, map, Observable, of, zip } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Exercise } from '../../models/exercise';
 import { ExercisesPageable } from '../../models/exercises-pageable';
@@ -27,30 +27,21 @@ export class ApiService {
     return this.http.post<any>('http://localhost:3000/exercise', data);
   }
 
-  updateExercise(data : Exercise, id : number){
-    return this.http.put<any>(exerciseURL + "/" + id,data);
+  updateExercise(data: Exercise, id: number) {
+    return this.http.put<any>(exerciseURL + '/' + id, data);
   }
 
   getExercise() {
     return this.http.get<any>('http://localhost:3000/exercise');
   }
 
-  getExercisePagin(page: number, limit: number): Observable<any> {
-    let params = new HttpParams();
-    params = params.append('_page', String(page + 1));
-    params = params.append('_limit', String(limit));
-    return this.http.get<any>('http://localhost:3000/exercise', {
-      observe: 'response',
-      params,
-    });
-  }
 
   getData(
     nameFilter = '',
-    sortField : string,
+    sortField: string,
     sortOrder: string,
     pageNumber = 0,
-    pageSize : number
+    pageSize: number
   ): Observable<ExercisesPageable> {
     let params = new HttpParams();
     params = params.set('_sort', sortField);
@@ -65,7 +56,7 @@ export class ApiService {
     return this.http
       .get<any>(exerciseURL, {
         observe: 'response',
-        params
+        params,
       })
       .pipe(
         map((res) => {
@@ -77,12 +68,5 @@ export class ApiService {
       );
   }
 
-  getExerciseFilter(filterValue: string) {
-    let params = new HttpParams();
-    params = params.append('name_like', filterValue);
-    return this.http.get<any>('http://localhost:3000/exercise', {
-      observe: 'response',
-      params,
-    });
-  }
+  
 }

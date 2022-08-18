@@ -8,8 +8,11 @@
             <mat-hint>the name of the exercise</mat-hint>
         </mat-form-field>
         <mat-form-field appearance="outline">
-            <mat-label>Description</mat-label>
-            <textarea formControlName="description" matInput></textarea>
+            <mat-label style="height:min-content;">Description</mat-label>
+            <textarea formControlName="description" matInput cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            cdkAutosizeMinRows="1"
+            cdkAutosizeMaxRows="5"></textarea>
             <mat-icon matSuffix>description</mat-icon>
             <mat-hint>a short description of the exercise</mat-hint>
         </mat-form-field>

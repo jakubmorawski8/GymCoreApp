@@ -14,7 +14,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Exercise } from 'src/app/core/models/exercise';
 import { Subject, Subscription, throwError, } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, finalize, tap } from 'rxjs/operators';
-import { ExerciseEditDialogComponent } from './exercise-edit-dialog/exercise-edit-dialog.component';
 
 @Component({
   selector: 'app-exercise-list',
@@ -70,21 +69,7 @@ export class ExerciseListComponent implements OnInit, AfterViewInit, OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
-  openCreateDialog() {
-    let config: MatDialogConfig = {
-      panelClass: 'dialog-responsive',
-    };
-
-    const dialogRef = this.dialog.open(ExerciseCreateDialogComponent, config);
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result === 'save') {
-        this.loadRows();
-      }
-    });
-  }
-
-  openEditDialog(data: Exercise) {
+  openDialog(data? : Exercise) {
     let config: MatDialogConfig = {
       panelClass: 'dialog-responsive',
       data:data
@@ -92,12 +77,15 @@ export class ExerciseListComponent implements OnInit, AfterViewInit, OnDestroy {
 
     const dialogRef = this.dialog.open(ExerciseCreateDialogComponent, config);
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result === 'save') {
-        this.loadRows();
-      }
+    dialogRef.afterClosed().subscribe({
+      next: (result) =>{
+        if (result === 'save') {
+          this.loadRows();
+        }
+      }      
     });
   }
+
 
 
   loadRows(){
@@ -109,7 +97,7 @@ export class ExerciseListComponent implements OnInit, AfterViewInit, OnDestroy {
       this.currentPage ?? 0,
       this.paginator?.pageSize ?? 5
     ).pipe(
-      tap(exercises => {
+      tap (exercises => {
         this.dataSource.data = exercises.items;
         this.paginator.length = exercises.totalCount
         this.dataSource.sort = this.sort;
