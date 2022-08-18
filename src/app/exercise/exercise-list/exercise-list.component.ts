@@ -26,6 +26,7 @@ export class ExerciseListComponent implements OnInit, AfterViewInit, OnDestroy {
     'description',
     'created_date',
     'modified_date',
+    'actions'
   ];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -68,19 +69,24 @@ export class ExerciseListComponent implements OnInit, AfterViewInit, OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
-  openDialog() {
+  openDialog(data? : Exercise) {
     let config: MatDialogConfig = {
       panelClass: 'dialog-responsive',
+      data:data
     };
 
     const dialogRef = this.dialog.open(ExerciseCreateDialogComponent, config);
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result === 'save') {
-        this.loadRows();
-      }
+    dialogRef.afterClosed().subscribe({
+      next: (result) =>{
+        if (result === 'save') {
+          this.loadRows();
+        }
+      }      
     });
   }
+
+
 
   loadRows(){
     this.isLoading = false;
@@ -91,7 +97,7 @@ export class ExerciseListComponent implements OnInit, AfterViewInit, OnDestroy {
       this.currentPage ?? 0,
       this.paginator?.pageSize ?? 5
     ).pipe(
-      tap(exercises => {
+      tap (exercises => {
         this.dataSource.data = exercises.items;
         this.paginator.length = exercises.totalCount
         this.dataSource.sort = this.sort;

@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>{{caption}}</h1>
+<h1 mat-dialog-title>Edit Exercise</h1>
 <div mat-dialog-content>
     <form [formGroup]="exerciseForm" novalidate (ngSubmit)="onSubmit()">
         <mat-form-field appearance="outline">
@@ -8,11 +8,8 @@
             <mat-hint>the name of the exercise</mat-hint>
         </mat-form-field>
         <mat-form-field appearance="outline">
-            <mat-label style="height:min-content;">Description</mat-label>
-            <textarea formControlName="description" matInput cdkTextareaAutosize
-            #autosize="cdkTextareaAutosize"
-            cdkAutosizeMinRows="1"
-            cdkAutosizeMaxRows="5"></textarea>
+            <mat-label>Description</mat-label>
+            <textarea formControlName="description" matInput></textarea>
             <mat-icon matSuffix>description</mat-icon>
             <mat-hint>a short description of the exercise</mat-hint>
         </mat-form-field>
