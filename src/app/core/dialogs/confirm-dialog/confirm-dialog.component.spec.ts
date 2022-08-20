@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ExerciseDeleteDialogComponent } from './exercise-delete-dialog.component';
+import { ExerciseDeleteDialogComponent } from './confirm-dialog.component';
 
 describe('ExerciseDeleteDialogComponent', () => {
   let component: ExerciseDeleteDialogComponent;

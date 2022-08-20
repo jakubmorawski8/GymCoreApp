@@ -31,6 +31,10 @@ export class ApiService {
     return this.http.put<any>(exerciseURL + '/' + id, data);
   }
 
+  deleteExercise(id: number){
+    return this.http.delete<any>(exerciseURL + '/' + id);
+  }
+
   getExercise() {
     return this.http.get<any>('http://localhost:3000/exercise');
   }
