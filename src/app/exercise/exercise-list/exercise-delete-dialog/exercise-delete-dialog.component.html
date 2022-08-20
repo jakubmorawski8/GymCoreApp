@@ -1,0 +1,7 @@
+<mat-dialog-content>
+    <p>{{message}}</p>
+    <mat-dialog-actions>
+        <button mat-raised-button color ="primary" (click)="onConfirm()" tabindex="1">YES</button>
+        <button mat-raised-button mat-dialog-close tabindex="-1">{{cancelButtonLabel}}</button>
+    </mat-dialog-actions>
+</mat-dialog-content>
