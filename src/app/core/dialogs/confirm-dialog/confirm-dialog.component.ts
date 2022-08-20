@@ -3,17 +3,17 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { of } from 'rxjs';
 
 @Component({
-  selector: 'app-exercise-delete-dialog',
-  templateUrl: './exercise-delete-dialog.component.html',
-  styleUrls: ['./exercise-delete-dialog.component.scss']
+  selector: 'app-confirm-dialog',
+  templateUrl: './confirm-dialog.component.html',
+  styleUrls: ['./confirm-dialog.component.scss']
 })
-export class ExerciseDeleteDialogComponent  {
+export class ConfirmDialogComponent  {
   message: string = "Are you sure?"
   confirmButtonLabel = "Yes"
   cancelButtonLabel = "No"
   constructor(
     @Inject(MAT_DIALOG_DATA) private data: any,
-    private dialogRef: MatDialogRef<ExerciseDeleteDialogComponent>){
+    private dialogRef: MatDialogRef<ConfirmDialogComponent>){
       if(data){
         this.message = data.message || this.message;
         if(data.buttonText){

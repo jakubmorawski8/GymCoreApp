@@ -14,7 +14,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Exercise } from 'src/app/core/models/exercise';
 import { Subject, Subscription, throwError, } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, finalize, tap } from 'rxjs/operators';
-import { ExerciseDeleteDialogComponent } from './exercise-delete-dialog/exercise-delete-dialog.component';
+import { ConfirmDialogComponent } from '../../core/dialogs/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-exercise-list',
@@ -88,7 +88,7 @@ export class ExerciseListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   delete(data: Exercise){
-    const dialogRef = this.dialog.open(ExerciseDeleteDialogComponent,{
+    const dialogRef = this.dialog.open(ConfirmDialogComponent,{
       data: {
         message: `Are you sure to delte task -  "${data.name}"`,
         buttonText: {
@@ -101,7 +101,17 @@ export class ExerciseListComponent implements OnInit, AfterViewInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {
-          alert("usunięto zadanie")
+          if(data.id)
+          {
+            this.api.deleteExercise(data.id).subscribe({
+              next: (res) => {
+                this.loadRows();
+              },
+              error: (x) => {
+                alert('Error while deleting the exercise' + x);
+              },
+            });
+          }          
       }
     });    
   }
