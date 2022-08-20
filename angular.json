@@ -109,5 +109,8 @@
       }
     }
   },
-  "defaultProject": "gym-core-app"
+  "defaultProject": "gym-core-app",
+  "cli": {
+    "analytics": false
+  }
 }
