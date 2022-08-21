@@ -12,9 +12,16 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Exercise } from 'src/app/core/models/exercise';
-import { Subject, Subscription, throwError, } from 'rxjs';
-import { catchError, debounceTime, distinctUntilChanged, finalize, tap } from 'rxjs/operators';
+import { Subject, Subscription, throwError } from 'rxjs';
+import {
+  catchError,
+  debounceTime,
+  distinctUntilChanged,
+  finalize,
+  tap,
+} from 'rxjs/operators';
 import { ConfirmDialogComponent } from '../../core/dialogs/confirm-dialog/confirm-dialog.component';
+import { CreateDialogForm } from 'src/app/core/models/create-dialog-form';
 
 @Component({
   selector: 'app-exercise-list',
@@ -27,7 +34,7 @@ export class ExerciseListComponent implements OnInit, AfterViewInit, OnDestroy {
     'description',
     'created_date',
     'modified_date',
-    'actions'
+    'actions',
   ];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -70,74 +77,104 @@ export class ExerciseListComponent implements OnInit, AfterViewInit, OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
-  openDialog(data? : Exercise) {
+  openDialog(data?: Exercise) {
     let config: MatDialogConfig = {
       panelClass: 'dialog-responsive',
-      data:data
+      data: data,
     };
 
     const dialogRef = this.dialog.open(ExerciseCreateDialogComponent, config);
 
     dialogRef.afterClosed().subscribe({
-      next: (result) =>{
-        if (result === 'save') {
-          this.loadRows();
+      next: (r) => {
+        let result = r as CreateDialogForm<Exercise>;
+        if (result.save) {
+          if (data === undefined) {
+            this.api.postExercise(result.data).subscribe({
+              next: (postResult) => {
+                if(postResult.ok)
+                {
+                  this.loadRows();
+                }     
+              },
+              error: (error) =>{
+                console.log("An error occurred while creating the record",error.message);
+              },
+            });
+          } else {
+            if (data.id) {
+              this.api.updateExercise(result.data, data.id).subscribe({
+                next: (updateResult) => {
+                  if(updateResult.ok)
+                  {
+                    this.loadRows();
+                  }
+                  else{
+                    console.log("Record was not updated");        
+                  }                  
+                },
+                error: (error) =>{
+                  console.log("An error occurred while updating the record",error.message);
+                }
+              });
+            }
+          }
         }
-      }      
+      },
     });
   }
 
-  delete(data: Exercise){
-    const dialogRef = this.dialog.open(ConfirmDialogComponent,{
+  delete(data: Exercise) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
         message: `Are you sure to delte task -  "${data.name}"`,
         buttonText: {
           ok: 'Save',
-          cancel : 'No'
+          cancel: 'No',
         },
-        record: data
-      }
+        record: data,
+      },
     });
 
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {
-          if(data.id)
-          {
-            this.api.deleteExercise(data.id).subscribe({
-              next: (res) => {
-                this.loadRows();
-              },
-              error: (x) => {
-                alert('Error while deleting the exercise' + x);
-              },
-            });
-          }          
+        if (data.id) {
+          this.api.deleteExercise(data.id).subscribe({
+            next: (res) => {
+              this.loadRows();
+            },
+            error: (x) => {
+              alert('Error while deleting the exercise' + x);
+            },
+          });
+        }
       }
-    });    
+    });
   }
 
-
-  loadRows(){
+  loadRows() {
     this.isLoading = false;
-    this.api.getData(
-      this.inputSearchValue,
-      this.sort?.active ?? this.defaultSortField,
-      this.sort?.direction ?? this.defaultSortDirection,
-      this.currentPage ?? 0,
-      this.paginator?.pageSize ?? 5
-    ).pipe(
-      tap (exercises => {
-        this.dataSource.data = exercises.items;
-        this.paginator.length = exercises.totalCount
-        this.dataSource.sort = this.sort;
-      }),
-      catchError(err => {
-        console.log("Error loading exercises",err);
-        return throwError(()=>new Error(err));
-      }),
-      finalize(() => this.isLoading = false)
-    )
-    .subscribe();
+    this.api
+      .getData(
+        this.inputSearchValue,
+        this.sort?.active ?? this.defaultSortField,
+        this.sort?.direction ?? this.defaultSortDirection,
+        this.currentPage ?? 0,
+        this.paginator?.pageSize ?? 5
+      )
+      .pipe(
+        tap((exercises) => {
+          this.dataSource.data = exercises.items;
+          this.paginator.length = exercises.totalCount;
+          this.dataSource.sort = this.sort;
+        }),
+        catchError((err) => {
+          console.log('Error loading exercises', err);
+          return throwError(() => new Error(err));
+        }),
+        finalize(() => (this.isLoading = false))
+      )
+      .subscribe();
   }
 
   pageChanged(event: PageEvent) {
@@ -150,9 +187,9 @@ export class ExerciseListComponent implements OnInit, AfterViewInit, OnDestroy {
   private applyFilter(inputValue: string) {
     this.inputSearchValue = inputValue;
     this.currentPage = 0;
-    this.sort.active = 'name'
-    this.sort.direction = 'asc'
-    this.loadRows();  
+    this.sort.active = 'name';
+    this.sort.direction = 'asc';
+    this.loadRows();
   }
 
   sortChange(sortState: Sort) {

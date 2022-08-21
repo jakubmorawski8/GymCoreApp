@@ -106,13 +106,6 @@
       "id": 16
     },
     {
-      "name": "Prostowanie przedramion z linkami wyciągu górnego",
-      "description": "",
-      "created_date": "2022-06-17T12:26:00.136Z",
-      "modified_date": "2022-06-17T12:26:00.136Z",
-      "id": 17
-    },
-    {
       "name": "Prostowanie przedramion z wyciągu górnego",
       "description": "",
       "created_date": "2022-06-17T12:26:06.093Z",
@@ -134,10 +127,10 @@
       "id": 20
     },
     {
-      "name": "3",
+      "name": "3r",
       "description": "",
-      "created_date": "2022-07-14T07:39:15.870Z",
-      "modified_date": "2022-07-14T07:39:15.870Z",
+      "created_date": "2022-08-21T11:07:45.685Z",
+      "modified_date": "2022-08-21T11:07:45.685Z",
       "id": 23
     },
     {
@@ -153,20 +146,6 @@
       "created_date": "2022-07-14T07:39:19.870Z",
       "modified_date": "2022-07-14T07:39:19.870Z",
       "id": 25
-    },
-    {
-      "name": "ćwiczenie 1",
-      "description": "",
-      "created_date": "2022-07-14T07:42:22.306Z",
-      "modified_date": "2022-07-14T07:42:22.306Z",
-      "id": 26
-    },
-    {
-      "name": "ćwiczenie 2",
-      "description": "",
-      "created_date": "2022-07-14T07:42:26.042Z",
-      "modified_date": "2022-07-14T07:42:26.042Z",
-      "id": 27
     },
     {
       "name": "ćwiczenie 3",
@@ -204,10 +183,10 @@
       "id": 32
     },
     {
-      "name": "33",
+      "name": "33eeeefdgfdrreredadwdwdrwerw3",
       "description": "",
-      "created_date": "2022-07-19T18:49:24.088Z",
-      "modified_date": "2022-07-19T18:49:24.088Z",
+      "created_date": "2022-08-21T11:10:27.897Z",
+      "modified_date": "2022-08-21T11:10:27.897Z",
       "id": 33
     },
     {
@@ -272,6 +251,69 @@
       "created_date": "2022-08-20T12:33:45.828Z",
       "modified_date": "2022-08-20T12:33:45.828Z",
       "id": 45
+    },
+    {
+      "name": "raz dwa trzy",
+      "description": "",
+      "created_date": "2022-08-21T10:00:29.943Z",
+      "modified_date": "2022-08-21T10:00:29.943Z",
+      "id": 46
+    },
+    {
+      "name": "rrr",
+      "description": "",
+      "created_date": "2022-08-21T11:07:57.977Z",
+      "modified_date": "2022-08-21T11:07:57.977Z",
+      "id": 47
+    },
+    {
+      "name": "rewrw",
+      "description": "",
+      "created_date": "2022-08-21T11:10:32.488Z",
+      "modified_date": "2022-08-21T11:10:32.488Z",
+      "id": 48
+    },
+    {
+      "name": "rwere",
+      "description": "",
+      "created_date": "2022-08-21T11:11:27.722Z",
+      "modified_date": "2022-08-21T11:11:27.722Z",
+      "id": 49
+    },
+    {
+      "name": "11111aabbfffccwrewr222",
+      "description": "",
+      "created_date": "2022-08-21T11:33:16.650Z",
+      "modified_date": "2022-08-21T11:33:16.650Z",
+      "id": 50
+    },
+    {
+      "name": "rwerwe",
+      "description": "",
+      "created_date": "2022-08-21T11:14:31.304Z",
+      "modified_date": "2022-08-21T11:14:31.304Z",
+      "id": 51
+    },
+    {
+      "name": "rwe",
+      "description": "",
+      "created_date": "2022-08-21T11:15:59.889Z",
+      "modified_date": "2022-08-21T11:15:59.890Z",
+      "id": 52
+    },
+    {
+      "name": "tewt",
+      "description": "",
+      "created_date": "2022-08-21T11:16:26.819Z",
+      "modified_date": "2022-08-21T11:16:26.819Z",
+      "id": 53
+    },
+    {
+      "name": "fwefwer",
+      "description": "",
+      "created_date": "2022-08-21T11:33:22.079Z",
+      "modified_date": "2022-08-21T11:33:22.079Z",
+      "id": 54
     }
   ]
 }

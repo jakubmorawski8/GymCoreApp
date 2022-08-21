@@ -11,6 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Exercise } from 'src/app/core/models/exercise';
 import { ApiService } from 'src/app/core/services/jsonserver/api.service';
+import { CreateDialogForm} from 'src/app/core/models/create-dialog-form';
 
 @Component({
   selector: 'app-exercise-create-dialog',
@@ -48,36 +49,18 @@ export class ExerciseCreateDialogComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.exerciseForm.valid) {
-      let exercise: Exercise = 
-      new Exercise(this.exerciseForm.get('name')?.value,
-      this.exerciseForm.get('description')?.value,
-      new Date(Date.now()),
-      new Date(Date.now()));
 
-      if (!this.updateMode) {
-        this.api.postExercise(exercise).subscribe({
-          next: (res) => {
-            // this.dialogRef.close('save');
-          },
-          error: (x) => {
-            alert('Error while adding the exercise' + x);
-          },
-        });
-      } else {
-        if(this.exerciseDialogData.id)
-        {
-          this.api.updateExercise(exercise,this.exerciseDialogData.id).subscribe({
-            next: (res) => {
-              // this.dialogRef.close('save');
-            },
-            error: (x) => {
-              alert('Error while updating the exercise' + x);
-            },
-          });
-        }
-      }
-      this.dialogRef.close('save');
-    }
+    let exercise: Exercise = 
+    new Exercise(this.exerciseForm.get('name')?.value,
+    this.exerciseForm.get('description')?.value,
+    new Date(Date.now()),
+    new Date(Date.now()));
+    
+    let formData : CreateDialogForm<Exercise> = {
+      save : this.exerciseForm.valid,
+      data: exercise
+    }  
+
+    this.dialogRef.close(formData);    
   }
 }
