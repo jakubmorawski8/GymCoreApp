@@ -24,11 +24,15 @@ export class ApiService {
   postExercise(data: Exercise) {
     data.created_date = new Date(Date.now());
     data.modified_date = new Date(Date.now());
-    return this.http.post<any>('http://localhost:3000/exercise', data);
+    return this.http.post<any>('http://localhost:3000/exercise', data,{
+      observe: 'response'
+    });
   }
 
   updateExercise(data: Exercise, id: number) {
-    return this.http.put<any>(exerciseURL + '/' + id, data);
+    return this.http.put<any>(exerciseURL + '/' + id, data,{
+      observe: 'response'
+    });
   }
 
   deleteExercise(id: number){
