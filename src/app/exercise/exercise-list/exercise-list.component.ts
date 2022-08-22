@@ -77,48 +77,60 @@ export class ExerciseListComponent implements OnInit, AfterViewInit, OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
-  openDialog(data?: Exercise) {
+  create() {
     let config: MatDialogConfig = {
       panelClass: 'dialog-responsive',
-      data: data,
     };
 
     const dialogRef = this.dialog.open(ExerciseCreateDialogComponent, config);
 
     dialogRef.afterClosed().subscribe({
-      next: (r) => {
-        let result = r as CreateDialogForm<Exercise>;
-        if (result.save) {
-          if (data === undefined) {
-            this.api.postExercise(result.data).subscribe({
-              next: (postResult) => {
-                if(postResult.ok)
-                {
-                  this.loadRows();
-                }     
-              },
-              error: (error) =>{
-                console.log("An error occurred while creating the record",error.message);
-              },
-            });
-          } else {
-            if (data.id) {
-              this.api.updateExercise(result.data, data.id).subscribe({
-                next: (updateResult) => {
-                  if(updateResult.ok)
-                  {
-                    this.loadRows();
-                  }
-                  else{
-                    console.log("Record was not updated");        
-                  }                  
-                },
-                error: (error) =>{
-                  console.log("An error occurred while updating the record",error.message);
-                }
-              });
-            }
-          }
+      next: (dialogResult) => {
+        let exercise = dialogResult as CreateDialogForm<Exercise>;
+        if (exercise.save) {
+          this.api.postExercise(exercise.data).subscribe({
+            next: (postResult) => {
+              if (postResult.ok) {
+                this.loadRows();
+              }
+            },
+            error: (error) => {
+              console.log(
+                'An error occurred while creating the record',
+                error.message
+              );
+            },
+          });
+        }
+      },
+    });
+  }
+
+  update(record: Exercise) {
+    let config: MatDialogConfig = {
+      panelClass: 'dialog-responsive',
+      data: record,
+    };
+
+    const dialogRef = this.dialog.open(ExerciseCreateDialogComponent, config);
+
+    dialogRef.afterClosed().subscribe({
+      next: (dialogResult) => {
+        let exercise = dialogResult as CreateDialogForm<Exercise>;
+        if (exercise.save && record.id) {
+          this.api.updateExercise(exercise.data, record.id).subscribe({
+            next: (updateResult) => {
+              if (updateResult.ok) {
+                this.loadRows();
+              }
+            },
+            error: (error) => {
+              console.log(
+                'An error occurred while creating the record',
+                error.message
+              );
+            },
+          });
         }
       },
     });
