@@ -54,6 +54,9 @@ export class LoginComponent implements OnDestroy {
           next: () => {
             this.router.navigateByUrl('/');
           },
+          error: (error)=>{
+            alert(error);
+          }
         })
     );
   }
