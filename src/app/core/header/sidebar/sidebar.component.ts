@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material/sidenav';
 import { delay, filter } from 'rxjs/operators';
@@ -15,6 +15,8 @@ export class SidebarComponent {
 
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
+
+  @Input() userIsLogged = false;
 
   constructor(private observer: BreakpointObserver, private router: Router) { }
 
