@@ -17,14 +17,7 @@ export class AppComponent {
     this.authService.loggedUserSubject.subscribe({
       next: (v) => 
       {
-        if(v)
-        {
-          this.userIsLogged = true;
-        }
-        else
-        {
-          this.userIsLogged = false;
-        }
+        this.userIsLogged = v ? true : false;
       },
       error: (e) => {
 

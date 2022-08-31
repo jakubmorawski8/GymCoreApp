@@ -52,7 +52,7 @@ export class LoginComponent implements OnDestroy {
         .pipe(first())
         .subscribe({
           next: () => {
-            this.router.navigateByUrl('/');
+            this.router.navigateByUrl('/exercise');
           },
           error: (error)=>{
             alert(error);
