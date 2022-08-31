@@ -31,11 +31,8 @@ export class AppComponent {
       },});
     }
 
-    
-  ngAfterViewInit() {
-    if(this.authService.loggedUser)
-    {
-      this.userIsLogged = true;
-    }
+    logout() : void {
+      this.authService.logout();
   }
+
 }

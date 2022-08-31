@@ -4,21 +4,22 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { delay, filter } from 'rxjs/operators';
 import { NavigationEnd, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { Output, EventEmitter } from '@angular/core';
 
 @UntilDestroy()
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss']
+  styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent {
-
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
   @Input() userIsLogged = false;
+  @Output() logoutEvent = new EventEmitter<void>();
 
-  constructor(private observer: BreakpointObserver, private router: Router) { }
+  constructor(private observer: BreakpointObserver, private router: Router) {}
 
   ngAfterViewInit() {
     this.observer
@@ -46,4 +47,7 @@ export class SidebarComponent {
       });
   }
 
+  logout() {
+    this.logoutEvent.emit();
+  }
 }
