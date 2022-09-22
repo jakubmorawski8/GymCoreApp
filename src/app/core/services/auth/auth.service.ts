@@ -19,7 +19,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
-  private loggedUserSubject: BehaviorSubject<LoggedUser | null>;
+  public loggedUserSubject: BehaviorSubject<LoggedUser | null>;
   
   constructor(private httpClient: HttpClient, private router: Router, private session: TokenStorageService) {
     this.loggedUserSubject = new BehaviorSubject<LoggedUser | null>(session.getApplicationUser());
