@@ -4,8 +4,9 @@ import { EventEmitter, Injectable, Output } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { BehaviorSubject, delay, map, Observable, of, zip } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Exercise } from '../../models/exercise';
-import { ExercisesPageable } from '../../models/exercises-pageable';
+import { Exercise} from '../../models/exercise';
+import {GetExerciseListQueryResponse} from '../../models/response/get-exercise-list-query-response';
+
 
 const exerciseURL: string = environment.urlJsonServer + 'exercise';
 
@@ -50,7 +51,7 @@ export class ApiService {
     sortOrder: string,
     pageNumber = 0,
     pageSize: number
-  ): Observable<ExercisesPageable> {
+  ): Observable<any> {
     let params = new HttpParams();
     params = params.set('_sort', sortField);
     params = params.set('_order', sortOrder);
@@ -68,10 +69,7 @@ export class ApiService {
       })
       .pipe(
         map((res) => {
-          return new ExercisesPageable(
-            res.body,
-            Number(res.headers.get('X-Total-Count'))
-          );
+          return new GetExerciseListQueryResponse(res.ok,"",null,Number(res.headers.get('X-Total-Count')),res.body)
         })
       );
   }

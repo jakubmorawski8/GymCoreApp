@@ -36,7 +36,7 @@
 
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-        <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+        <td mat-cell *matCellDef="let row; datasource: dataSource">{{ row.name }}</td>
       </ng-container>
 
       <ng-container matColumnDef="description">
@@ -47,14 +47,14 @@
       <ng-container matColumnDef="created_date">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Created date</th>
         <td mat-cell *matCellDef="let row">
-          {{ row.created_date | date: "short" }}
+          {{ row.createdDate | date: "short" }}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="modified_date">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Modified date</th>
         <td mat-cell *matCellDef="let row">
-          {{ row.modified_date | date: "short" }}
+          {{ row.modifiedDate | date: "short" }}
         </td>
       </ng-container>
 
