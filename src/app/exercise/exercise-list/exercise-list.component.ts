@@ -32,11 +32,11 @@ import { ExerciseListVm } from 'src/app/core/models/response/exercise-list-vm';
 })
 export class ExerciseListComponent implements OnInit, AfterViewInit, OnDestroy {
   displayedColumns: string[] = [
-    'name',
-    'description',
-    'created_date',
-    'modified_date',
-    'actions',
+    'Name',
+    'Description',
+    'CreatedDate',
+    'ModifiedDate',
+    'Actions',
   ];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -57,7 +57,7 @@ export class ExerciseListComponent implements OnInit, AfterViewInit, OnDestroy {
   private subscriptions = new Subscription();
   searchValueChanged: Subject<string> = new Subject<string>();
 
-  constructor(public dialog: MatDialog, private api: ApiService) {}
+  constructor(public dialog: MatDialog, private api: ApiService, private exerciseApi : ExerciseService) {}
 
   ngOnInit(): void {
     this.subscriptions.add(
@@ -168,7 +168,7 @@ export class ExerciseListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   loadRows() {
     this.isLoading = false;
-    this.api
+    this.exerciseApi
       .getData(
         this.inputSearchValue,
         this.sort?.active ?? this.defaultSortField,
