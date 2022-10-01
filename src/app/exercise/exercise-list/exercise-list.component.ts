@@ -22,11 +22,8 @@ import {
 } from 'rxjs/operators';
 import { ConfirmDialogComponent } from '../../core/dialogs/confirm-dialog/confirm-dialog.component';
 import { CreateDialogForm } from 'src/app/core/models/create-dialog-form';
-<<<<<<< Updated upstream
-=======
 import { ExerciseService } from 'src/app/core/services/data/exercise';
 import { ExerciseListVm } from 'src/app/core/models/response/exercise-list-vm';
->>>>>>> Stashed changes
 
 @Component({
   selector: 'app-exercise-list',
@@ -181,13 +178,8 @@ export class ExerciseListComponent implements OnInit, AfterViewInit, OnDestroy {
       )
       .pipe(
         tap((exercises) => {
-<<<<<<< Updated upstream
-          this.dataSource.data = exercises.items;
-          this.paginator.length = exercises.totalCount;
-=======
           this.dataSource.data = exercises.body?.exercises!
           this.paginator.length = exercises.body?.totalCount
->>>>>>> Stashed changes
           this.dataSource.sort = this.sort;
         }),
         catchError((err) => {
