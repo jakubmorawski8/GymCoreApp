@@ -1,27 +1,23 @@
-# GymCoreApp
+# GymCoreApp - Track Your Gym Progress!
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2.
+GymCoreApp is an application designed to help you keep track of your gym workouts, including the number of sets, repetitions, and weights lifted. This app was developed as a portfolio project to showcase and demonstrate expertise in Angular. It serves as a frontend client for another application I built using .NET technology, which acts as the backend.
 
-## Development server
+## Skills Gained During Project Development:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- **Modules:** Organizing the application into modular components for better maintainability and reusability.
+- **Components:** Building and structuring components to encapsulate functionality and create a cohesive user interface.
+- **Services:** Implementing services to handle business logic and data manipulation separate from components.
+- **Interpolation:** Using interpolation to bind data and dynamically display content in the templates.
+- **Pipes:** Utilizing both standard and custom pipes to format and transform data for better presentation.
+- **Question Mark Operator:** Employing the safe navigation operator to handle potential null or undefined values.
+- **Data Binding:** Establishing data binding between the component class and template to keep data in sync.
+- **Event Binding:** Handling user interactions and triggering actions in response to events.
+- **Template Reference:** Leveraging template reference variables to access and manipulate DOM elements.
+- **ngModel - Two-Way Binding:** Implementing two-way data binding using ngModel for real-time data synchronization.
+- **Lifecycle Hooks:** Understanding and using component lifecycle hooks to perform actions at specific stages of a component's lifecycle.
+- **RxJS - Observable, Subject, Subscribe, Unsubscribe:** Working with RxJS to manage asynchronous operations and handle data streams.
+- **Routing:** Setting up routing to navigate between different views and components within the application.
+- **Error Handling:** Implementing error handling mechanisms to gracefully manage exceptions and provide meaningful feedback to users.
 
-## Code scaffolding
+These skills have significantly contributed to the successful completion of GymCoreApp and have enhanced my proficiency in Angular development.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
