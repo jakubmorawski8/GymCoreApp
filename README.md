@@ -1,6 +1,6 @@
 # GymCoreApp - Track Your Gym Progress!
 
-GymCoreApp is an application designed to help you keep track of your gym workouts, including the number of sets, repetitions, and weights lifted. This app was developed as a portfolio project to showcase and demonstrate expertise in Angular. It serves as a frontend client for another application I built using .NET technology, which acts as the backend.
+GymCoreApp is an application designed to help you keep track of your gym workouts, including the number of sets, repetitions, and weights lifted. This app was developed as a portfolio project to showcase and demonstrate expertise in Angular. It serves as a frontend client for another application GymCore Backend: [https://github.com/jakubmorawski8/GymCore](https://github.com/jakubmorawski8/GymCore) I built using .NET technology, which acts as the backend.
 
 ## Skills Gained During Project Development:
 
